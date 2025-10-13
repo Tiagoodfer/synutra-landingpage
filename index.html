@@ -34,6 +34,7 @@
         line-height: 1.4;
         color: var(--text-light);
         overflow-x: hidden;
+        text-align: center; /* centraliza texto globalmente */
       }
 
       /* Full-screen sections with scroll snap */
@@ -65,6 +66,8 @@
         position: relative; /* keep content above background fx */
         z-index: 1;
       }
+      /* Listas centralizadas e mais limpas para mobile */
+      .container ul { list-style-position: inside; padding-left: 0 !important; margin: 0 auto; text-align: center; }
 
       /* Themes */
       .theme-dark { background: var(--bg-dark); color: var(--text-light); overflow: hidden; }
@@ -113,16 +116,22 @@
       /* Header (somente na primeira tela) */
       .hero-header {
         position: absolute;
-        inset: 16px 16px auto 16px;
+        top: 16px;
+        left: 0;
+        right: 0;
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 16px;
+        z-index: 2;
+        pointer-events: none; /* evita bloquear cliques no vídeo */
       }
       .hero-header img.logo {
-        height: 42px;
+        height: clamp(56px, 10vw, 96px);
         width: auto;
         display: block;
         filter: drop-shadow(0 6px 14px rgba(0,0,0,.45));
+        pointer-events: auto; /* logo ainda pode ser selecionada se necessário */
       }
 
       h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
@@ -147,6 +156,20 @@
       }
       .video-frame iframe, .video-html5 video {
         width: 100%; height: 100%; border: 0; display: block;
+      }
+
+      /* Image frame */
+      .image-frame {
+        width: 100%;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow-strong);
+        background: #000;
+      }
+      .image-frame img {
+        width: 100%;
+        height: auto;
+        display: block;
       }
 
       /* CTA Button */
@@ -179,7 +202,7 @@
       }
 
       /* Grids */
-      .grid-2 { display: grid; grid-template-columns: 1fr; gap: 20px; }
+      .grid-2 { display: grid; grid-template-columns: 1fr; gap: 20px; justify-items: center; }
       @media (min-width: 860px) { .grid-2 { grid-template-columns: 1.2fr .8fr; gap: 28px; } }
 
       .features { display: grid; grid-template-columns: repeat(1, minmax(0,1fr)); gap: 16px; }
@@ -216,7 +239,7 @@
       }
       .accent::after {
         content: "";
-        position: absolute; left: 0; bottom: -6px;
+        position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%);
         width: 64px; height: 4px;
         background: var(--brand);
         border-radius: 3px;
@@ -287,25 +310,19 @@
         </div>
       </section>
 
-      <!-- TELA 3: Como funciona (escura) -->
+      <!-- TELA 3: Foto de flexibilidade (escura) -->
       <section id="t3" class="theme-dark">
-        <div class="container grid-2">
-          <div class="stack-lg">
-            <span class="kicker">Passo a passo</span>
-            <h2>Como funciona na prática</h2>
-            <div class="stack-md">
-              <p><strong>1.</strong> Acesse o plano e escolha o protocolo ideal.</p>
-              <p><strong>2.</strong> Siga o cronograma de treinos com vídeos e instruções.</p>
-              <p><strong>3.</strong> Aplique a nutrição na sua rotina, sem complicação.</p>
-              <p><strong>4.</strong> Monitore sua evolução e ajuste conforme necessário.</p>
-            </div>
-            <div>
-              <a href="#t7" class="cta">Obter Acesso</a>
-            </div>
+        <div class="container stack-md">
+          <div class="stack-md">
+            <span class="kicker">Mobilidade e Controle</span>
+            <h2>Flexibilidade para mover melhor</h2>
+            <p>Sequências focadas em mobilidade articular e alongamentos ativos para reduzir dores, aumentar a amplitude de movimento e melhorar sua performance nos treinos.</p>
           </div>
-          <div class="card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.15)">
-            <h3>Pronto para iniciar ainda hoje</h3>
-            <p>Zero burocracia: tudo o que você precisa em um único lugar, acessível de qualquer dispositivo.</p>
+          <div class="image-frame">
+            <img src="assets/flixibilidade.png" alt="Flexibilidade" />
+          </div>
+          <div>
+            <a href="#t7" class="cta">Obter Acesso</a>
           </div>
         </div>
       </section>
