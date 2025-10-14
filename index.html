@@ -39,10 +39,7 @@
 
       /* Full-screen sections with scroll snap */
       main {
-        height: 100svh;
-        height: 100dvh;
-        overflow-y: auto;
-        scroll-snap-type: y mandatory;
+        min-height: 100vh;
       }
 
       section {
@@ -54,8 +51,6 @@
         padding: 72px 20px 32px;
         position: relative;
         isolation: isolate; /* ensures background effects stay behind content */
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
       }
 
       .container {
@@ -394,10 +389,6 @@
             <p>A Synutra resolve os bloqueios que te fazem parar — sem complicar sua rotina.</p>
           </div>
           <div class="features">
-            <div class="feature">
-              <h3>➡️ Falta de tempo : Não consigo treinar 1h por dia.</h3>
-              <p>Treinos curtos de 20–30 min com progressão automática e agenda flexível (academia ou casa).</p>
-            </div>
             <div class="feature">
               <h3>➡️ Dieta difícil de seguir : Planos complexos, ingredientes caros ou pouco acessíveis.</h3>
               <p>Cardápio simples com alimentos do dia a dia, lista de compras e trocas com 1 toque.</p>
