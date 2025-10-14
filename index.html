@@ -329,6 +329,48 @@
       #t3 { padding-top: 48px; padding-bottom: 24px; }
       #t3 .container { gap: 18px; }
       #t3 .stack-md { gap: 10px; }
+
+      /* Ajuste de altura da tela 2 */
+      #t2 {
+        min-height: 50svh;
+        min-height: 50dvh;
+      }
+
+      /* Ajuste de altura da tela 10 */
+      #t10 {
+        min-height: 3svh;
+        min-height: 3cqmin;
+      }
+      #t10 .container { gap: 8px; }
+      #t10 .legal { font-size: 10px; line-height: 1.45; color: #555; }
+      #t10 .legal-gap { height: 8px; }
+      #t10 .contact { display: grid; justify-items: center; gap: 8px; }
+      #t10 .contact span { font-size: 11px; font-weight: 600; color: #333; letter-spacing: .02em; }
+      #t10 .social {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+      #t10 .social a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid rgba(0,0,0,.08);
+        transition: transform .15s ease, box-shadow .15s ease;
+        box-shadow: 0 6px 14px rgba(0,0,0,.18);
+        overflow: hidden;
+      }
+      #t10 .social a img {
+        width: 70%;
+        height: 70%;
+        object-fit: contain;
+        display: block;
+      }
+      #t10 .social a:hover { transform: translateY(-1px); }
     </style>
   </head>
   <body>
@@ -384,7 +426,7 @@
 
       <!-- TELA 2: Benefícios (clara) -->
       <section id="t2" class="theme-light">
-        <div class="container">
+        <!-- <div class="container"> -->
           <div class="stack-lg center">
             <h2 class="accent">Menos confusão. Mais resultado.</h2>
             <p>A Synutra resolve os bloqueios que te fazem parar — sem complicar sua rotina.</p>
@@ -407,7 +449,7 @@
           <div class="center">
             <a href="#t7" class="cta">Obter Acesso</a>
           </div>
-        </div>
+        <!-- </div> -->
       </section>
 
       <!-- TELA 3: Foto de flexibilidade (escura) -->
@@ -545,13 +587,27 @@
       <!-- TELA 10: Legal + Copyright (clara) -->
       <section id="t10" class="theme-light">
         <div class="container stack-lg">
-          <div class="center">
-            <a href="#t7" class="cta">Obter Acesso</a>
-          </div>
           <div class="legal">
-            <p>*Os resultados podem variar de pessoa para pessoa e não são garantidos. Exercício e dieta adequada são necessários para a perda de peso e alcançar a definição muscular. Os depoimentos apresentados podem ter usado mais de um produto Synutra® ou estendido o programa para alcançar seus resultados máximos.</p>
+            <p>Os resultados podem variar de pessoa para pessoa e não são garantidos. Exercício e dieta adequada são necessários para a perda de peso e alcançar a definição muscular. Os depoimentos apresentados podem ter usado mais de um produto Synutra® ou estendido o programa para alcançar seus resultados máximos.</p>
             <p>Consulte o seu médico e siga todas as instruções de segurança antes de iniciar qualquer programa de exercício, plano nutricional ou utilizar qualquer produto de suplemento ou substituição de refeições, especialmente se você estiver grávida, amamentando, tem qualquer cuidado médico ou está tomando qualquer tipo de medicamento.</p>
-            <p>Copyright 2025 - Synutra®</p>
+          </div>
+          <hr style="width:60px;border:0;border-top:1px solid rgba(0,0,0,.12);" />
+          <div class="contact">
+            <span>Contato:</span>
+            <div class="social">
+              <a href="https://instagram.com/synutra" target="_blank" rel="noopener" aria-label="Instagram">
+                <img src="assets/instagram.webp" alt="Instagram" />
+              </a>
+              <a href="https://facebook.com/synutra" target="_blank" rel="noopener" aria-label="Facebook">
+                <img src="assets/facebook.webp" alt="Facebook" />
+              </a>
+              <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" aria-label="WhatsApp">
+                <img src="assets/zap.webp" alt="WhatsApp" />
+              </a>
+            </div>
+            <hr style="width:60px;border:0;border-top:1px solid rgba(0,0,0,.12);" />
+            <div class="legal-gap" aria-hidden="true"></div>
+            <p>Todos os direitos reservados - Synutra®</p>
           </div>
         </div>
       </section>
