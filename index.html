@@ -107,6 +107,7 @@
 
       @media (prefers-reduced-motion: reduce) {
         .theme-dark::before, .theme-dark::after { animation: none; }
+        #t1 .ticker-track { animation: none; }
       }
 
       /* Header (somente na primeira tela) */
@@ -187,6 +188,38 @@
       }
       .cta:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(255,106,0,.4); filter: saturate(1.1); }
       .cta:active { transform: translateY(0); }
+
+      /* Ticker footer da tela 1 */
+      #t1 .ticker {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+        padding: 10px 0;
+        border-top: 1px solid rgba(255,255,255,.14);
+        background: linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,.85));
+        mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.85) 12%, rgba(0,0,0,.85) 88%, transparent 100%);
+      }
+      #t1 .ticker-track {
+        display: inline-flex;
+        align-items: center;
+        gap: 48px;
+        padding-left: 12px;
+        white-space: nowrap;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        animation: ticker-scroll 16s linear infinite;
+        will-change: transform;
+      }
+      #t1 .ticker-track span { color: rgba(255,255,255,.9); }
+
+      @keyframes ticker-scroll {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
 
       /* Subtle divider for light sections */
       .card {
@@ -426,6 +459,14 @@
 
           <div class="center">
             <a href="#t7" class="cta" aria-label="Ir para a oferta">Obter Acesso</a>
+          </div>
+        </div>
+        <div class="ticker" aria-hidden="true">
+          <div class="ticker-track">
+            <span>Synutra o Seu Parceiro para a vida !</span>
+            <span aria-hidden="true">Synutra o Seu Parceiro para a vida !</span>
+            <span aria-hidden="true">Synutra o Seu Parceiro para a vida !</span>
+            <span aria-hidden="true">Synutra o Seu Parceiro para a vida !</span>
           </div>
         </div>
       </section>
