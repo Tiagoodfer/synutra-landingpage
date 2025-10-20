@@ -189,6 +189,84 @@
       .cta:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(255,106,0,.4); filter: saturate(1.1); }
       .cta:active { transform: translateY(0); }
 
+      /* Carousel na tela 2 */
+      #t2 .carousel {
+        position: relative;
+        width: min(900px, 100%);
+        margin: 0 auto;
+        padding: 0 56px;
+        box-sizing: border-box;
+      }
+      #t2 .carousel-viewport {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-soft);
+        background: linear-gradient(135deg, rgba(255,106,0,.08), rgba(255,106,0,.02));
+        aspect-ratio: 16 / 10;
+      }
+      #t2 .carousel-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity .6s ease;
+        display: grid;
+        place-items: center;
+        padding: 0;
+      }
+      #t2 .carousel-slide.is-active { opacity: 1; }
+      #t2 .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      #t2 .carousel-placeholder {
+        width: 100%;
+        height: 100%;
+        border-radius: calc(var(--radius) - 8px);
+        border: 2px dashed rgba(0,0,0,.12);
+        background: rgba(255,255,255,.85);
+        color: rgba(0,0,0,.55);
+        display: grid;
+        place-items: center;
+        font-weight: 600;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+      }
+      #t2 .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 0;
+        display: grid;
+        place-items: center;
+        background: rgba(0,0,0,.65);
+        color: #fff;
+        cursor: pointer;
+        transition: background .2s ease, transform .2s ease;
+      }
+      #t2 .carousel-control:hover { background: rgba(0,0,0,.8); transform: translateY(-50%) scale(1.05); }
+      #t2 .carousel-control:active { transform: translateY(-50%) scale(.97); }
+      #t2 .carousel-control span { font-size: 18px; line-height: 1; }
+      #t2 .carousel-control[data-carousel-prev] { left: 6px; }
+      #t2 .carousel-control[data-carousel-next] { right: 6px; }
+      #t2 .carousel-control:focus-visible {
+        outline: 3px solid rgba(255,106,0,.6);
+        outline-offset: 2px;
+      }
+      @media (max-width: 620px) {
+        #t2 .carousel { padding: 0 44px; }
+        #t2 .carousel-control { width: 36px; height: 36px; }
+      }
+      @media (max-width: 480px) {
+        #t2 .carousel { padding: 0 36px; }
+        #t2 .carousel-control { width: 32px; height: 32px; }
+      }
+
       /* Ticker footer da tela 1 */
       #t1 .ticker {
         position: absolute;
@@ -473,30 +551,37 @@
 
       <!-- TELA 2: Benefícios (clara) -->
       <section id="t2" class="theme-light">
-        <!-- <div class="container"> -->
-          <div class="stack-lg center">
-            <h2 class="accent">Menos confusão. Mais resultado.</h2>
-            <p>A Synutra resolve os bloqueios que te fazem parar — sem complicar sua rotina.</p>
+        <div class="container stack-lg center">
+          <h2 class="accent">COM SUA DIETA E AS AULAS VOCÊ VAI ALCANÇAR O SEU OBJETIVO</h2>
+          <div class="carousel" data-carousel>
+            <button class="carousel-control" type="button" aria-label="Mostrar imagem anterior" data-carousel-prev>
+              <span aria-hidden="true">‹</span>
+            </button>
+            <div class="carousel-viewport" aria-live="polite">
+              <figure class="carousel-slide is-active" data-carousel-index="0">
+                <img src="assets/image01.jpg" alt="Planejando refeições saudáveis com Synutra" loading="eager" />
+              </figure>
+              <figure class="carousel-slide" data-carousel-index="1">
+                <img src="assets/image02.jpg" alt="Acompanhamento de treino personalizado Synutra" loading="lazy" />
+              </figure>
+              <figure class="carousel-slide" data-carousel-index="2">
+                <img src="assets/image03.jpg" alt="Treino guiado em casa com Synutra" loading="lazy" />
+              </figure>
+              <figure class="carousel-slide" data-carousel-index="3">
+                <img src="assets/image05.png" alt="Resultados reais conquistados com Synutra" loading="lazy" />
+              </figure>
+              <figure class="carousel-slide" data-carousel-index="4">
+                <img src="assets/image06.png" alt="Motivação diária através do app Synutra" loading="lazy" />
+              </figure>
+            </div>
+            <button class="carousel-control" type="button" aria-label="Mostrar próxima imagem" data-carousel-next>
+              <span aria-hidden="true">›</span>
+            </button>
           </div>
-          <div class="features">
-            <div class="feature">
-              <h3>➡️ Dieta difícil de seguir : Planos complexos, ingredientes caros ou pouco acessíveis.</h3>
-              <p>Cardápio simples com alimentos do dia a dia, lista de compras e trocas com 1 toque.</p>
-            </div>
-            <div class="feature">
-              <h3>➡️ Falta de constância : Começo bem e desisto. </h3>
-              <p>Metas semanais, notificação inteligente e vídeotreinos guiados para manter o ritmo.</p>
-            </div>
-            <div class="feature">
-              <h3>➡️ Restrições e preferências : Tenho restrições 
-                 / enjoo de comer a mesma coisa. </h3>
-              <p>Milhares de receitas filtradas por gosto e restrições, com rotação automática.</p>
-            </div>
-          </div>
-          <div class="center">
+          <div>
             <a href="#t7" class="cta">Obter Acesso</a>
           </div>
-        <!-- </div> -->
+        </div>
       </section>
 
       <!-- TELA 3: Foto de flexibilidade (escura) -->
@@ -660,5 +745,81 @@
         </div>
       </section>
     </main>
+    <script>
+      (function () {
+        const carousel = document.querySelector('[data-carousel]');
+        if (!carousel) return;
+
+        const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+        const prevButton = carousel.querySelector('[data-carousel-prev]');
+        const nextButton = carousel.querySelector('[data-carousel-next]');
+        if (!slides.length) return;
+
+        let currentIndex = 0;
+        let autoTimer = null;
+        const AUTO_INTERVAL = 5000;
+        const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        const applyActiveSlide = (index) => {
+          slides.forEach((slide, idx) => {
+            const isActive = idx === index;
+            slide.classList.toggle('is-active', isActive);
+            slide.setAttribute('aria-hidden', String(!isActive));
+          });
+          currentIndex = index;
+        };
+
+        const showRelative = (offset) => {
+          const total = slides.length;
+          const nextIndex = (currentIndex + offset + total) % total;
+          applyActiveSlide(nextIndex);
+        };
+
+        const clearAuto = () => {
+          if (autoTimer) {
+            clearInterval(autoTimer);
+            autoTimer = null;
+          }
+        };
+
+        const startAuto = () => {
+          if (motionQuery.matches || slides.length < 2) return;
+          clearAuto();
+          autoTimer = setInterval(() => showRelative(1), AUTO_INTERVAL);
+        };
+
+        prevButton?.addEventListener('click', () => {
+          showRelative(-1);
+          startAuto();
+        });
+
+        nextButton?.addEventListener('click', () => {
+          showRelative(1);
+          startAuto();
+        });
+
+        carousel.addEventListener('pointerenter', clearAuto);
+        carousel.addEventListener('pointerleave', startAuto);
+
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            clearAuto();
+          } else {
+            startAuto();
+          }
+        });
+
+        motionQuery.addEventListener?.('change', () => {
+          if (motionQuery.matches) {
+            clearAuto();
+          } else {
+            startAuto();
+          }
+        });
+
+        applyActiveSlide(currentIndex);
+        startAuto();
+      })();
+    </script>
   </body>
-  </html>
+</html>
