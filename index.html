@@ -508,6 +508,221 @@
         display: block;
       }
       #t10 .social a:hover { transform: translateY(-1px); }
+
+      /* Estilos do card de oferta */
+      .offer-card {
+        max-width: 400px;
+        margin: 0 auto;
+        background: #000;
+        border-radius: 16px;
+        padding: 0;
+        box-shadow: 0 0 30px rgba(34, 197, 94, 0.3);
+        border: 1px solid rgba(34, 197, 94, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .offer-banner {
+        background: linear-gradient(135deg, #22c55e, #16a34a, #ff6a00, #e35f00);
+        color: #fff;
+        text-align: center;
+        padding: 8px 0;
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        border-radius: 20px;
+        margin: 12px 12px 0 12px;
+        width: calc(100% - 24px);
+        box-shadow: 0 2px 8px rgba(255, 106, 0, 0.3);
+      }
+
+      .course-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 20px 20px 0 20px;
+        position: relative;
+      }
+
+      .course-title h2 {
+        font-size: 24px;
+        font-weight: 700;
+        color: #fff;
+        margin: 0;
+        text-transform: uppercase;
+      }
+
+      .course-title h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+        margin: 0;
+        text-transform: uppercase;
+      }
+
+      .growth-icon {
+        width: 24px;
+        height: 24px;
+        color: #22c55e;
+      }
+
+      .growth-icon svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .offer-heading {
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+        text-align: center;
+        margin: 16px 0;
+        padding: 0 20px;
+      }
+
+      .offer-items {
+        padding: 0 20px;
+      }
+
+      .offer-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-size: 14px;
+      }
+
+      .offer-item:first-child {
+        border-top: none;
+      }
+
+      .item-name {
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        position: relative;
+        padding-left: 20px;
+      }
+
+      .item-name::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #22c55e;
+        font-weight: 700;
+        font-size: 16px;
+      }
+
+      .pricing-section {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .original-price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+        color: #fff;
+        font-size: 14px;
+      }
+
+      .price-label {
+        font-weight: 600;
+      }
+
+      .price-value {
+        text-decoration: line-through;
+        color: #ff0000;
+        font-weight: 600;
+      }
+
+      .discounted-price {
+        font-size: 48px;
+        font-weight: 700;
+        color: #22c55e;
+        margin: 8px 0;
+        text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+      }
+
+      .payment-options {
+        font-size: 14px;
+        color: #fff;
+        margin-bottom: 20px;
+      }
+
+      .offer-cta {
+        display: block;
+        width: calc(100% - 40px);
+        margin: 0 20px 16px 20px;
+        padding: 16px 24px;
+        background: linear-gradient(135deg, #4ade80, #22c55e, #16a34a);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 16px;
+        text-align: center;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+
+      .offer-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5);
+        background: linear-gradient(135deg, #5eea8a, #34d399, #22c55e);
+      }
+
+      .security-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0 20px 20px 20px;
+        color: #ccc;
+        font-size: 12px;
+      }
+
+      .shield-icon {
+        width: 16px;
+        height: 16px;
+        color: #ccc;
+      }
+
+      .shield-icon svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Responsividade para mobile */
+      @media (max-width: 480px) {
+        .offer-card {
+          max-width: 100%;
+          margin: 0 10px;
+        }
+        
+        .course-title h2 {
+          font-size: 20px;
+        }
+        
+        .course-title h3 {
+          font-size: 18px;
+        }
+        
+        .discounted-price {
+          font-size: 36px;
+        }
+        
+        .offer-cta {
+          font-size: 14px;
+          padding: 14px 20px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -657,24 +872,75 @@
 
       <!-- TELA 7: Produto + Oferta (escura) -->
       <section id="t7" class="theme-dark">
-        <div class="container grid-2">
-          <div class="stack-lg">
-            <span class="kicker">Oferta</span>
-            <h2>Tenha acesso completo ao Programa Synutra</h2>
-            <p>Entre agora e destrave o método completo de treinos e nutrição para treinar em casa com alta eficiência.</p>
-            <ul class="stack-sm" style="padding-left:18px; margin:0;">
-              <li>Acesso imediato ao conteúdo</li>
-              <li>Atualizações inclusas</li>
-              <li>Garantia de satisfação</li>
-            </ul>
-            <div class="stack-sm">
-              <a href="https://pay.cakto.com.br/yqn8fy7_614203" class="cta">Obter Acesso</a>
-              <p style="font-size:13px;color:#bdbdbd">O botão acima leva ao checkout seguro.</p>
+        <div class="container">
+          <div class="offer-card">
+            <!-- Banner MELHOR OFERTA -->
+            <div class="offer-banner">
+              <span>MELHOR OFERTA</span>
             </div>
-          </div>
-          <div class="card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.15)">
-            <h3>O que você recebe</h3>
-            <p>Planos, aulas, materiais e suporte para guiar sua evolução. Tudo em uma experiência clara e objetiva.</p>
+            
+            <!-- Título do curso -->
+            <div class="course-title">
+              <h2>SyNutra App</h2>
+              <h3>Acesso total por 90 dias</h3>
+              <div class="growth-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 17L9 11L13 15L21 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M21 7H15V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            
+            <!-- Título principal da oferta -->
+            <h4 class="offer-heading">Acesso Completo ao App</h4>
+            
+            <!-- Lista de itens -->
+            <div class="offer-items">
+              <div class="offer-item">
+                <span class="item-name">Acesso Imediato ao conteúdo</span>
+              </div>
+              <div class="offer-item">
+                <span class="item-name">Atualizações inclusas</span>
+              </div>
+              <div class="offer-item">
+                <span class="item-name">Garantia de satisfação</span>
+              </div>
+              <div class="offer-item">
+                <span class="item-name">Acesso Ilimitado por 90 dias !</span>
+              </div>
+              <div class="offer-item">
+                <span class="item-name">Sugestão de dieta Exclusiva</span>
+              </div>
+              <div class="offer-item">
+                <span class="item-name">Sugestão de Treino Exclusivo</span>
+              </div>
+              <div class="offer-item">
+                <span class="item-name">Video Treinos</span>
+              </div>
+              <div class="offer-item">
+                <span class="item-name">Milhares de Receitas</span>
+              </div>
+            </div>
+            
+            <!-- Seção de preços -->
+            <div class="pricing-section">
+              <div class="discounted-price">R$ 99,90</div>
+              <div class="payment-options">À vista ou 3x de R$ 37,91</div>
+            </div>
+            
+            <!-- Botão CTA -->
+            <a href="https://pay.cakto.com.br/yqn8fy7_614203" class="offer-cta">
+              Quero o acesso ao App
+            </a>
+            
+            <!-- Informação de segurança -->
+            <div class="security-info">
+              <svg class="shield-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Pagamento 100% seguro</span>
+            </div>
           </div>
         </div>
       </section>
