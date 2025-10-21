@@ -2,7 +2,7 @@
 <html lang="pt-br">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
     <title>Synutra — Landing Page</title>
     <link rel="icon" type="image/png" href="assets/emoji.png" />
     <meta name="description" content="Synutra — Transforme sua vida com treino e nutrição otimizados." />
@@ -25,6 +25,8 @@
         height: 100%;
         scroll-behavior: smooth;
         background: var(--bg-dark);
+        overflow-x: hidden;
+        position: relative;
       }
 
       * { box-sizing: border-box; }
@@ -44,14 +46,21 @@
       }
 
       section {
+        min-height: 100vh;
         min-height: 100svh;
-        min-height: 100dvh;
         display: grid;
         align-items: center;
         justify-items: center;
         padding: 72px 20px 32px;
         position: relative;
         isolation: isolate; /* ensures background effects stay behind content */
+      }
+      
+      /* Fallback para navegadores que não suportam svh */
+      @supports not (height: 100svh) {
+        section {
+          min-height: 100vh;
+        }
       }
 
       .container {
@@ -462,21 +471,21 @@
 
       /* Ajuste de altura da tela 2 */
       #t2 {
+        min-height: 46vh;
         min-height: 46svh;
-        min-height: 46dvh;
         padding: 0 20px clamp(40px, 8vw, 96px);
       }
 
       /* Ajuste de altura da tela 9 */
       #t9 {
+        min-height: 50vh;
         min-height: 50svh;
-        min-height: 50dvh;
       }
 
       /* Ajuste de altura da tela 10 */
       #t10 {
-        min-height: 3svh;
-        min-height: 3cqmin;
+        min-height: 2.79vh;
+        min-height: 2.79svh;
       }
       #t10 .container { gap: 8px; }
       #t10 .legal { font-size: 10px; line-height: 1.45; color: #555; }
@@ -699,6 +708,47 @@
         height: 100%;
       }
 
+      /* Correções específicas para mobile */
+      @media (max-width: 768px) {
+        /* Previne zoom e movimento indesejado */
+        html {
+          -webkit-text-size-adjust: 100%;
+          -ms-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+        }
+        
+        body {
+          -webkit-overflow-scrolling: touch;
+          overscroll-behavior: none;
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+        
+        /* Permite seleção de texto em elementos específicos */
+        p, h1, h2, h3, span, a, button {
+          -webkit-user-select: text;
+          -khtml-user-select: text;
+          -moz-user-select: text;
+          -ms-user-select: text;
+          user-select: text;
+        }
+        
+        /* Ajusta altura das seções para mobile */
+        section {
+          min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+          padding: 60px 16px 20px;
+        }
+        
+        /* Previne scroll horizontal */
+        * {
+          max-width: 100%;
+        }
+      }
+
       /* Responsividade para mobile */
       @media (max-width: 480px) {
         .offer-card {
@@ -721,6 +771,11 @@
         .offer-cta {
           font-size: 14px;
           padding: 14px 20px;
+        }
+        
+        /* Ajustes adicionais para telas muito pequenas */
+        section {
+          padding: 50px 12px 16px;
         }
       }
     </style>
@@ -873,16 +928,19 @@
       <!-- TELA 7: Produto + Oferta (escura) -->
       <section id="t7" class="theme-dark">
         <div class="container">
+          <div class="stack-md center" style="margin-bottom: 16px;">
+            <h3 style="font-size: clamp(24px, 4vw, 36px); font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.02em;">
+              SYNUTRA - App de Treino e Nutrição
+            </h3>
+          </div>
           <div class="offer-card">
             <!-- Banner MELHOR OFERTA -->
             <div class="offer-banner">
-              <span>MELHOR OFERTA</span>
+              <span>Oportunidade Única</span>
             </div>
             
             <!-- Título do curso -->
             <div class="course-title">
-              <h2>SyNutra App</h2>
-              <h3>Acesso total por 90 dias</h3>
               <div class="growth-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M3 17L9 11L13 15L21 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -892,34 +950,43 @@
             </div>
             
             <!-- Título principal da oferta -->
-            <h4 class="offer-heading">Acesso Completo ao App</h4>
+            <h4 class="offer-heading">Acesso Completo por 90 dias</h4>
             
             <!-- Lista de itens -->
             <div class="offer-items">
-              <div class="offer-item">
-                <span class="item-name">Acesso Imediato ao conteúdo</span>
-              </div>
-              <div class="offer-item">
-                <span class="item-name">Atualizações inclusas</span>
-              </div>
-              <div class="offer-item">
-                <span class="item-name">Garantia de satisfação</span>
-              </div>
-              <div class="offer-item">
-                <span class="item-name">Acesso Ilimitado por 90 dias !</span>
-              </div>
-              <div class="offer-item">
-                <span class="item-name">Sugestão de dieta Exclusiva</span>
-              </div>
-              <div class="offer-item">
-                <span class="item-name">Sugestão de Treino Exclusivo</span>
-              </div>
-              <div class="offer-item">
-                <span class="item-name">Video Treinos</span>
-              </div>
+
               <div class="offer-item">
                 <span class="item-name">Milhares de Receitas</span>
               </div>
+
+              <div class="offer-item">
+                <span class="item-name">Os Melhores Videos de Treinos</span>
+              </div>
+
+              <div class="offer-item">
+                <span class="item-name">Sugestão de dieta Exclusiva</span>
+              </div>
+
+              <div class="offer-item">
+                <span class="item-name">Acesso Imediato ao conteúdo</span>
+              </div>
+
+              <div class="offer-item">
+                <span class="item-name">Atualizações inclusas</span>
+              </div>
+
+              <div class="offer-item">
+                <span class="item-name">Garantia de satisfação</span>
+              </div>
+              
+              <div class="offer-item">
+                <span class="item-name">Acesso Ilimitado por 90 dias !</span>
+              </div>
+
+              <div class="offer-item">
+                <span class="item-name">Sugestão de Treino Exclusivo</span>
+              </div>
+
             </div>
             
             <!-- Seção de preços -->
