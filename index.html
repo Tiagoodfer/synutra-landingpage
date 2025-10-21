@@ -22,7 +22,8 @@
       }
 
       html, body {
-        height: 100%;
+        height: auto;
+        min-height: 100%;
         scroll-behavior: smooth;
         background: var(--bg-dark);
         overflow-x: hidden;
@@ -46,8 +47,7 @@
       }
 
       section {
-        min-height: 100vh;
-        min-height: 100svh;
+        min-height: 100dvh;
         display: grid;
         align-items: center;
         justify-items: center;
@@ -56,13 +56,6 @@
         isolation: isolate; /* ensures background effects stay behind content */
       }
       
-      /* Fallback para navegadores que não suportam svh */
-      @supports not (height: 100svh) {
-        section {
-          min-height: 100vh;
-        }
-      }
-
       .container {
         width: min(1120px, 100%);
         margin: 0 auto;
@@ -75,8 +68,8 @@
       .container ul { list-style-position: inside; padding-left: 0 !important; margin: 0 auto; text-align: center; }
 
       /* Themes */
-      .theme-dark { background: var(--bg-dark); color: var(--text-light); overflow: hidden; }
-      .theme-light { background: var(--bg-light); color: var(--text-dark); }
+      .theme-dark { background: var(--bg-dark); color: var(--text-light); overflow: visible; }
+      .theme-light { background: var(--bg-light); color: var(--text-dark); overflow: visible; }
       
       /* Tela 6 com cor específica */
       #t6 { 
@@ -929,7 +922,7 @@
         
         /* Ajusta altura das seções para mobile */
         section {
-          min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+          min-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
           padding: 60px 16px 20px;
         }
         
@@ -1379,3 +1372,8 @@
     </script>
   </body>
 </html>
+
+
+
+
+
