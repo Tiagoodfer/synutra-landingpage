@@ -77,6 +77,128 @@
       /* Themes */
       .theme-dark { background: var(--bg-dark); color: var(--text-light); overflow: hidden; }
       .theme-light { background: var(--bg-light); color: var(--text-dark); }
+      
+      /* Tela 6 com cor específica */
+      #t6 { 
+        background: #d5b28c !important; 
+        color: var(--text-dark); 
+        position: relative;
+        overflow: hidden;
+      }
+      
+      /* Container da imagem do celular ocupando toda a tela */
+      .phone-image-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+      
+      .phone-image {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+      }
+      
+      /* Cabeçalho da tela 6 */
+      .t6-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: center;
+        z-index: 2;
+        padding: 10px 20px 20px;
+        background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, transparent 100%);
+        width: 100%;
+        box-sizing: border-box;
+      }
+      
+      .t6-title {
+        font-size: clamp(20px, 3.5vw, 36px);
+        font-weight: 700;
+        color: #fff;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+        margin: 0 0 8px 0;
+        line-height: 1.1;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+      
+      .t6-subtitle {
+        font-size: clamp(16px, 2.6vw, 22px);
+        color: #fff;
+        text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+        margin: 0;
+        line-height: 1.45;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      
+      /* Pontos de benefícios no canto inferior direito */
+      .t6-benefits {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 2;
+        display: grid;
+        gap: 8px;
+        max-width: 200px;
+      }
+      
+      .benefit-item {
+        background: rgba(0,0,0,0.8);
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        text-align: center;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.2);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      }
+      
+      /* Responsividade para mobile */
+      @media (max-width: 768px) {
+        .t6-header {
+          top: 0;
+          padding: 8px 15px 18px;
+        }
+        
+        .t6-benefits {
+          bottom: 15px;
+          right: 15px;
+          max-width: 180px;
+          gap: 6px;
+        }
+        
+        .benefit-item {
+          font-size: 11px;
+          padding: 6px 10px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .t6-header {
+          top: 0;
+          padding: 6px 10px 16px;
+        }
+        
+        .t6-benefits {
+          bottom: 10px;
+          right: 10px;
+          max-width: 160px;
+        }
+        
+        .benefit-item {
+          font-size: 10px;
+          padding: 5px 8px;
+        }
+      }
 
       /* Subtle animated orange stripes on dark sections */
       .theme-dark::before,
@@ -914,13 +1036,27 @@
         </div>
       </section>
 
-      <!-- TELA 6: Depoimentos / Prova social (clara) -->
+      <!-- TELA 6: Imagem do celular ocupando toda a tela -->
       <section id="t6" class="theme-light">
-        <div class="container">
-          <div class="stack-lg center">
-            <h2 class="accent">Histórias reais</h2>
-            <p>Relatos de consistência, saúde e performance. Sua vez agora.</p>
-            <a href="#t7" class="cta">Obter Acesso</a>
+        <!-- Imagem do celular ocupando toda a tela -->
+        <div class="phone-image-container">
+          <img src="assets/celular-video-treino.jpg" alt="App Synutra em celular" class="phone-image" />
+          
+          <!-- Cabeçalho sobre a imagem -->
+          <div class="t6-header">
+            <h2 class="t6-title">Videos Treinos em Casa no Formato Reels</h2>
+            <p class="t6-subtitle">Aba de Vídeo-Treinos com aulas diárias em alta qualidade, passo a passo claro para o seu objetivo (emagrecer ou ganhar músculo) e a biblioteca mais completa para treinar em casa — comece agora e sinta a diferença.</p>
+          </div>
+          
+          <!-- Pontos de benefícios no canto inferior direito -->
+          <div class="t6-benefits">
+            <div class="benefit-item">🔥 Queima de Gordura</div>
+            <div class="benefit-item">⏱️ Ritmo Guiado (timer)</div>
+            <div class="benefit-item">🎧 Áudio do coach</div>
+            <div class="benefit-item">🎯 Passo a passo</div>
+            <div class="benefit-item">🏠 Feitos p/ onde preferir</div>
+            <div class="benefit-item">🎥 HD/4K</div>
+            <div class="benefit-item">🧰 Sem equipamento</div>
           </div>
         </div>
       </section>
