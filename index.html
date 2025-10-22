@@ -28,6 +28,7 @@
         background: var(--bg-dark);
         overflow-x: hidden;
         position: relative;
+        overscroll-behavior: none;
       }
 
       * { box-sizing: border-box; }
@@ -47,13 +48,17 @@
       }
 
       section {
-        min-height: 100dvh;
+        min-height: 100svh;
         display: grid;
         align-items: center;
         justify-items: center;
         padding: 72px 20px 32px;
         position: relative;
         isolation: isolate; /* ensures background effects stay behind content */
+      }
+
+      #t1 {
+        min-height: 100lvh;
       }
       
       .container {
@@ -70,6 +75,8 @@
       /* Themes */
       .theme-dark { background: var(--bg-dark); color: var(--text-light); overflow: visible; }
       .theme-light { background: var(--bg-light); color: var(--text-dark); overflow: visible; }
+
+      /* pausa animações durante o scroll ativo */
       
       /* Tela 6 com cor específica */
       #t6 { 
@@ -961,7 +968,9 @@
           padding: 50px 12px 16px;
         }
       }
-    </style>
+
+
+</style>
   </head>
   <body>
     <main>
@@ -1370,10 +1379,18 @@
         startAuto();
       })();
     </script>
+    <script>
+      (function () {
+        let scrollTimeout;
+        const onScroll = () => {
+          document.documentElement.classList.add('is-scrolling');
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            document.documentElement.classList.remove('is-scrolling');
+          }, 180);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+      })();
+    </script>
   </body>
 </html>
-
-
-
-
-
