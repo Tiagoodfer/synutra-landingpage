@@ -19,6 +19,7 @@
         --radius: 14px;
         --shadow-strong: 0 20px 50px rgba(0,0,0,.35);
         --shadow-soft: 0 10px 25px rgba(0,0,0,.15);
+        --vh: 100svh; /* fallback para altura estável */
       }
 
       html, body {
@@ -44,11 +45,11 @@
 
       /* Full-screen sections with scroll snap */
       main {
-        min-height: 100svh;
+        min-height: var(--vh);
       }
 
       section {
-        min-height: 100svh;
+        min-height: var(--vh);
         display: grid;
         align-items: center;
         justify-items: center;
@@ -58,7 +59,7 @@
       }
 
       #t1 {
-        min-height: 100lvh;
+        min-height: var(--vh);
       }
       
       .container {
@@ -929,7 +930,7 @@
         
         /* Ajusta altura das seções para mobile */
         section {
-          min-height: calc(100svh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+          min-height: calc(var(--vh) - env(safe-area-inset-top) - env(safe-area-inset-bottom));
           padding: 60px 16px 20px;
         }
         
@@ -1303,6 +1304,35 @@
         </div>
       </section>
     </main>
+    <script>
+      (function () {
+        const docEl = document.documentElement;
+        let baseVH = window.innerHeight;
+        let lastOrientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+
+        const applyVH = (value) => {
+          docEl.style.setProperty('--vh', `${value}px`);
+        };
+
+        const updateVH = () => {
+          const currentOrientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+          const currentHeight = window.innerHeight;
+
+          if (currentOrientation !== lastOrientation) {
+            lastOrientation = currentOrientation;
+            baseVH = currentHeight;
+          } else {
+            baseVH = Math.min(baseVH, currentHeight);
+          }
+
+          applyVH(baseVH);
+        };
+
+        applyVH(baseVH);
+        window.addEventListener('resize', updateVH);
+        window.visualViewport?.addEventListener('resize', updateVH);
+      })();
+    </script>
     <script>
       (function () {
         const carousel = document.querySelector('[data-carousel]');
