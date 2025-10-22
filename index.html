@@ -1695,10 +1695,13 @@
           return;
         }
 
-        const defaultGlowTargets = document.querySelectorAll('.reveal-on-scroll :is(h1, h2, h3, h4.offer-heading, .accent)');
-        defaultGlowTargets.forEach((node) => {
-          if (node.closest('.legal') || node.closest('summary') || node.hasAttribute('data-glow-ignore')) return;
-          node.setAttribute('data-glow', '');
+        const revealSections = Array.from(revealEls);
+        revealSections.forEach((section) => {
+          const potentialTargets = section.querySelectorAll('h1, h2, h3, h4, .accent, .offer-heading');
+          potentialTargets.forEach((node) => {
+            if (node.closest('.legal') || node.closest('summary') || node.hasAttribute('data-glow-ignore')) return;
+            node.setAttribute('data-glow', '');
+          });
         });
 
         const highlight = (sectionEl) => {
