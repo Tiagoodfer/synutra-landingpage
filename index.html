@@ -532,6 +532,62 @@
       .grid-2 { display: grid; grid-template-columns: 1fr; gap: 20px; justify-items: center; }
       @media (min-width: 860px) { .grid-2 { grid-template-columns: 1.2fr .8fr; gap: 28px; } }
 
+      .principles-grid {
+        display: grid;
+        gap: clamp(18px, 3vw, 28px);
+      }
+      @media (min-width: 700px) {
+        .principles-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (min-width: 1120px) {
+        .principles-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+      .principle-card {
+        display: grid;
+        gap: 16px;
+        text-align: left;
+      }
+      .principle-card img {
+        width: 100%;
+        height: auto;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-soft);
+      }
+      .principle-card .stack-sm {
+        text-align: left;
+      }
+
+      .testimonial-videos {
+        display: grid;
+        gap: clamp(20px, 4vw, 28px);
+        width: min(900px, 100%);
+        margin: 0 auto;
+      }
+      .testimonial-video {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow-soft);
+        background: #000;
+      }
+      .testimonial-video iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+      .testimonial-cta {
+        display: flex;
+        justify-content: center;
+      }
+
       .features { display: grid; grid-template-columns: repeat(1, minmax(0,1fr)); gap: 16px; }
       @media (min-width: 700px) { .features { grid-template-columns: repeat(3, minmax(0,1fr)); } }
       .feature { padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.03); }
@@ -1082,28 +1138,63 @@
         </div>
       </section>
 
-      <!-- TELA 4: Resultados (clara) -->
+      <!-- TELA 4: Princ�pios Cient�ficos (clara) -->
       <section id="t4" class="theme-light">
         <div class="container">
           <div class="stack-lg center">
-            <h2 class="accent">Resultados consistentes</h2>
-            <p>Estratégias validadas para construir hábitos sustentáveis e medir progresso real.</p>
-            <a href="#t7" class="cta">Obter Acesso</a>
+            <h2 class="accent">Princípios Científicos</h2>
+            <p>Mais que um aplicativo, uma plataforma pensada por profissionais de Educação Física.</p>
+            <p>No centro da Gymnamic está uma equipe de profissionais dedicados focados em lhe proporcionar a melhor experiência de treinamento.</p>
+          </div>
+          <div class="principles-grid">
+            <div class="card principle-card">
+              <img src="assets/treino01.jpg" alt="Profissionais apoiando orienta��es de treino" loading="lazy" />
+              <div class="stack-sm">
+                <h3>Apoiado por profissionais</h3>
+                <p>Desenvolvido por especialistas licenciados pelo Conselho Regional de Educação Física, você pode confiar que cada orientação vem de um conhecimento profundo e cientificamente comprovado.</p>
+              </div>
+            </div>
+            <div class="card principle-card">
+              <img src="assets/treino02.png" alt="Treino com base em princ�pios cient�ficos" loading="lazy" />
+              <div class="stack-sm">
+                <h3>Fundação científica</h3>
+                <p>Nossa metodologia não é guiada por modismos, mas por princípios científicos sólidos. A ciência constitui a base de cada treino personalizado que você recebe.</p>
+              </div>
+            </div>
+            <div class="card principle-card">
+              <img src="assets/treino03.png" alt="Praticante seguindo orienta��es com seguran�a" loading="lazy" />
+              <div class="stack-sm">
+                <h3>A segurança é uma prioridade</h3>
+                <p>Exercite-se sabendo que cada programa é criado pensando na sua segurança, minimizando riscos e maximizando resultados.</p>
+              </div>
+            </div>
+            <div class="card principle-card">
+              <img src="assets/treino04.jpg" alt="Profissional incentivando aluno rumo aos objetivos" loading="lazy" />
+              <div class="stack-sm">
+                <h3>Nossa missão é o seu sucesso</h3>
+                <p>Ao escolher o Gymnamic, você ganha mais do que um aplicativo: você ganha um parceiro de treino dedicado à sua jornada em direção aos seus objetivos.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
-      <!-- TELA 5: Metodologia (escura) -->
+      <!-- TELA 5: Depoimentos (escura) -->
       <section id="t5" class="theme-dark">
-        <div class="container grid-2">
-          <div class="card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.15)">
-            <h3>Metodologia Synutra</h3>
-            <p>Combina protocolos de treino de alto impacto com pilares de nutrição simples e eficaz. Foco em constância e desempenho.</p>
+        <div class="container stack-lg">
+          <div class="stack-md center">
+            <h2 class="accent">Depoimentos</h2>
+            <p>Junte-se a milhares de usuários e alcance seus objetivos na academia!</p>
           </div>
-          <div class="stack-md">
-            <h2>Ciência + Simplicidade</h2>
-            <p>Sem promessas milagrosas: só o que funciona, do jeito certo.</p>
-            <a href="#t7" class="cta">Obter Acesso</a>
+          <div class="testimonial-videos">
+            <div class="testimonial-video">
+              <iframe src="https://www.youtube.com/embed/UItWltVZZmE" title="Historia real  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="testimonial-video">
+              <iframe src="https://www.youtube.com/embed/ml6cT4AZdqI" title="Depoimento de resultado conquistado" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="testimonial-cta">
+              <a href="#t7" class="cta">Obter Acesso</a>
+            </div>
           </div>
         </div>
       </section>
@@ -1116,8 +1207,8 @@
           
           <!-- Cabeçalho sobre a imagem -->
           <div class="t6-header">
-            <h3 class="t6-title">Videos Treinos</h3>
-            <h4 class="t6-title">Para fazer em Casa no Formato Reels</h4>
+            <h2 class="t6-title">Videos Treinos</h2>
+            <h2 class="t6-title">Para fazer em Casa no Formato Reels</h2>
             <p class="t6-subtitle">Passo a passo claro para o seu objetivo (emagrecer ou ganhar músculo) e a biblioteca mais completa para treinar em casa — comece agora e sinta a diferença.</p>
           </div>
           
@@ -1165,11 +1256,7 @@
             <div class="offer-items">
 
               <div class="offer-item">
-                <span class="item-name">Milhares de Receitas</span>
-              </div>
-
-              <div class="offer-item">
-                <span class="item-name">Os Melhores Videos de Treinos</span>
+                <span class="item-name">Videos de Treinos diários</span>
               </div>
 
               <div class="offer-item">
@@ -1177,11 +1264,19 @@
               </div>
 
               <div class="offer-item">
+                <span class="item-name">Guia de Treino Personalizado</span>
+              </div>
+
+              <div class="offer-item">
+                <span class="item-name">Milhares de Receitas</span>
+              </div>
+
+              <div class="offer-item">
                 <span class="item-name">Acesso Imediato ao conteúdo</span>
               </div>
 
               <div class="offer-item">
-                <span class="item-name">Atualizações inclusas</span>
+                <span class="item-name">Futuras Atualizações inclusas</span>
               </div>
 
               <div class="offer-item">
@@ -1194,6 +1289,10 @@
 
               <div class="offer-item">
                 <span class="item-name">Sugestão de Treino Exclusivo</span>
+              </div>
+
+              <div class="offer-item">
+                <span class="item-name">Suporte Humanizado</span>
               </div>
 
             </div>
@@ -1424,4 +1523,5 @@
     </script>
   </body>
 </html>
+
 
