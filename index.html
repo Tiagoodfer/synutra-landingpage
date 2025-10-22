@@ -1,3 +1,26 @@
+Skip to content
+Navigation Menu
+Tiagoodfer
+synutra-landingpage
+
+Type / to search
+Code
+Issues
+Pull requests
+Actions
+Projects
+Security
+Insights
+Settings
+synutra-landingpage
+/index.html
+Go to file
+t
+ 
+
+Code
+
+Blame
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -680,6 +703,13 @@
       #t2 .carousel-control:focus-visible {
         outline: 3px solid rgba(255,106,0,.6);
         outline-offset: 2px;
+      }
+      #t2 .t2-footer {
+        width: min(1200px, 100%);
+        height: clamp(48px, 12vw, 96px);
+        border-radius: calc(var(--radius) - 4px);
+        background: rgba(0,0,0,.08);
+        box-shadow: var(--shadow-soft);
       }
       @media (max-width: 720px) {
         #t2 .carousel { padding: 0 64px; }
@@ -1402,6 +1432,7 @@
               <span aria-hidden="true">›</span>
             </button>
           </div>
+          <footer class="t2-footer" aria-hidden="true"></footer>
         </div>
       </section>
 
