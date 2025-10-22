@@ -1,26 +1,3 @@
-Skip to content
-Navigation Menu
-Tiagoodfer
-synutra-landingpage
-
-Type / to search
-Code
-Issues
-Pull requests
-Actions
-Projects
-Security
-Insights
-Settings
-synutra-landingpage
-/index.html
-Go to file
-t
- 
-
-Code
-
-Blame
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -81,31 +58,8 @@ Blame
         isolation: isolate; /* ensures background effects stay behind content */
       }
 
-      .reveal-on-scroll {
-        --reveal-delay: 0s;
-        opacity: 0;
-        transform: translateY(48px);
-        transition: opacity .6s ease, transform .6s ease;
-        transition-delay: var(--reveal-delay, 0s);
-        will-change: opacity, transform;
-      }
-
-      .reveal-on-scroll.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      html:not(.js-enabled) .reveal-on-scroll {
-        opacity: 1;
-        transform: none;
-      }
-
       #t1 {
         min-height: var(--vh);
-        position: relative;
-        overflow: hidden;
-        --aurora-x: 50%;
-        --aurora-y: 50%;
       }
       
       .container {
@@ -122,133 +76,6 @@ Blame
       /* Themes */
       .theme-dark { background: var(--bg-dark); color: var(--text-light); overflow: visible; }
       .theme-light { background: var(--bg-light); color: var(--text-dark); overflow: visible; }
-
-      .hero-aurora {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background:
-          radial-gradient(500px circle at var(--aurora-x) var(--aurora-y), rgba(255,106,0,.32), transparent 60%),
-          radial-gradient(720px circle at calc(var(--aurora-x) + 14%) calc(var(--aurora-y) + 18%), rgba(74,144,226,.22), transparent 70%),
-          radial-gradient(680px circle at calc(var(--aurora-x) - 18%) calc(var(--aurora-y) - 12%), rgba(120,255,214,.18), transparent 68%);
-        mix-blend-mode: screen;
-        opacity: .75;
-        transition: background-position .35s ease, opacity .4s ease;
-        animation: auroraFlow 16s ease-in-out infinite alternate;
-      }
-
-      .hero-aurora::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(120deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,0) 38%, rgba(255,106,0,.15) 70%, rgba(0,0,0,0) 100%);
-        mix-blend-mode: soft-light;
-        animation: auroraSweep 24s ease-in-out infinite;
-      }
-
-      @keyframes auroraFlow {
-        0% { filter: blur(0px) hue-rotate(0deg); }
-        50% { filter: blur(6px) hue-rotate(18deg); }
-        100% { filter: blur(12px) hue-rotate(-12deg); }
-      }
-
-      @keyframes auroraSweep {
-        0% { transform: translateX(-8%) translateY(-4%) scale(1.05); opacity: .65; }
-        50% { transform: translateX(6%) translateY(4%) scale(1.1); opacity: .9; }
-        100% { transform: translateX(-12%) translateY(2%) scale(1.03); opacity: .6; }
-      }
-
-      .tilt-card {
-        --tilt-rotate-x: 0deg;
-        --tilt-rotate-y: 0deg;
-        --tilt-elevate: 0;
-        position: relative;
-        transform-style: preserve-3d;
-        transform: perspective(1100px) rotateX(var(--tilt-rotate-x)) rotateY(var(--tilt-rotate-y)) translateZ(calc(var(--tilt-elevate) * 12px));
-        transition: transform .55s cubic-bezier(.22, 1, .36, 1), box-shadow .45s ease;
-      }
-
-      .tilt-card::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        background: linear-gradient(135deg, rgba(255,106,0,.18), rgba(255,255,255,0), rgba(120,255,214,.12));
-        mix-blend-mode: screen;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity .35s ease, filter .45s ease;
-      }
-
-      .tilt-card.is-tilting {
-        box-shadow: 0 28px 54px rgba(0,0,0,.28);
-      }
-
-      .tilt-card.is-tilting::after {
-        opacity: .55;
-        filter: blur(12px);
-      }
-
-      .tilt-card.tilt-off {
-        transform: none !important;
-        box-shadow: inherit !important;
-      }
-
-      .tilt-card.tilt-off::after {
-        display: none;
-      }
-
-      [data-glow] {
-        position: relative;
-        z-index: 1;
-      }
-
-      [data-glow]::after {
-        content: "";
-        position: absolute;
-        inset: -14px -24px;
-        border-radius: clamp(10px, 3vw, 28px);
-        background: radial-gradient(circle at 50% 50%, rgba(255,106,0,.28), rgba(255,106,0,0));
-        opacity: 0;
-        pointer-events: none;
-        filter: blur(18px);
-        transform: scale(.9);
-        transition: opacity .4s ease, transform .5s ease;
-      }
-
-      .glow-once {
-        animation: textGlow 1.6s ease-out var(--glow-delay, 0s) forwards;
-      }
-
-      .glow-once::after {
-        opacity: .75;
-        transform: scale(1);
-        animation: haloGlow 1.6s ease-out var(--glow-delay, 0s) forwards;
-      }
-
-      @keyframes textGlow {
-        0% { text-shadow: 0 0 0 rgba(255,106,0,0); }
-        35% { text-shadow: 0 6px 22px rgba(255,106,0,.48), 0 -4px 12px rgba(120,255,214,.22); }
-        100% { text-shadow: 0 0 0 rgba(255,106,0,0); }
-      }
-
-      @keyframes haloGlow {
-        0% { opacity: 0; transform: scale(.8); }
-        40% { opacity: .9; transform: scale(1.08); }
-        100% { opacity: 0; transform: scale(1.2); }
-      }
-
-      @keyframes ctaRipple {
-        0% { transform: translate(-50%, -50%) scale(0); opacity: .9; }
-        60% { transform: translate(-50%, -50%) scale(16); opacity: .35; }
-        100% { transform: translate(-50%, -50%) scale(24); opacity: 0; }
-      }
-
-      @keyframes gridDrift {
-        0% { background-position: 0 0, 0 0; }
-        50% { background-position: 40px 60px, -40px 20px; }
-        100% { background-position: 0 120px, 0 60px; }
-      }
 
       /* pausa animações durante o scroll ativo */
       
@@ -545,7 +372,6 @@ Blame
 
       /* CTA Button */
       .cta {
-        position: relative;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -557,68 +383,12 @@ Blame
         text-decoration: none;
         font-weight: 700;
         letter-spacing: .02em;
-        text-transform: uppercase;
-        font-size: clamp(16px, 2.6vw, 18px);
-        box-shadow: 0 20px 48px rgba(255,106,0,.28);
-        overflow: hidden;
-        transform: translate3d(calc(var(--cta-tx, 0px) + var(--cta-tx-dynamic, 0px)), calc(var(--cta-ty, 0px) + var(--cta-ty-dynamic, 0px)), 0) scale(var(--cta-scale, 1));
-        transition: transform .35s ease, box-shadow .4s ease, filter .4s ease;
-        will-change: transform, box-shadow;
+        box-shadow: 0 10px 25px rgba(255,106,0,.35);
+        transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+        will-change: transform;
       }
-      .cta::before {
-        content: "";
-        position: absolute;
-        inset: -30%;
-        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.28), rgba(255,255,255,0) 55%);
-        opacity: 0;
-        transform: scale(.5) rotate(0deg);
-        transition: opacity .45s ease, transform .6s ease;
-        mix-blend-mode: screen;
-        pointer-events: none;
-      }
-      .cta::after {
-        content: "";
-        position: absolute;
-        inset: -4px;
-        border-radius: inherit;
-        border: 1px solid rgba(255,255,255,.22);
-        opacity: 0;
-        transition: opacity .35s ease;
-        pointer-events: none;
-      }
-      .cta:hover,
-      .cta:focus-visible {
-        --cta-ty: -3px;
-        --cta-scale: 1.02;
-        box-shadow: 0 26px 52px rgba(255,106,0,.38);
-        filter: saturate(1.12);
-      }
-      .cta:hover::before,
-      .cta:focus-visible::before {
-        opacity: 1;
-        transform: scale(1) rotate(18deg);
-      }
-      .cta:hover::after,
-      .cta:focus-visible::after {
-        opacity: .85;
-      }
-      .cta:active {
-        --cta-scale: .97;
-        --cta-ty: 0px;
-        box-shadow: 0 8px 26px rgba(255,106,0,.32);
-      }
-      .cta .cta-ripple {
-        position: absolute;
-        width: 16px;
-        height: 16px;
-        background: rgba(255,255,255,.35);
-        border-radius: 50%;
-        pointer-events: none;
-        transform: translate(-50%, -50%) scale(0);
-        opacity: .9;
-        animation: ctaRipple .68s ease-out forwards;
-        mix-blend-mode: screen;
-      }
+      .cta:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(255,106,0,.4); filter: saturate(1.1); }
+      .cta:active { transform: translateY(0); }
 
       /* Carousel na tela 2 */
       #t2 .container {
@@ -770,23 +540,8 @@ Blame
       @media (min-width: 860px) { .grid-2 { grid-template-columns: 1.2fr .8fr; gap: 28px; } }
 
       .principles-grid {
-        position: relative;
         display: grid;
         gap: clamp(18px, 3vw, 28px);
-        isolation: isolate;
-      }
-      .principles-grid::before {
-        content: "";
-        position: absolute;
-        inset: -6% -4%;
-        background:
-          linear-gradient(90deg, rgba(255,106,0,.1) 1px, transparent 1px) 0 0 / clamp(120px, 20vw, 220px) 100%,
-          linear-gradient(0deg, rgba(255,255,255,.05) 1px, transparent 1px) 0 0 / 100% clamp(120px, 20vw, 220px);
-        opacity: .35;
-        z-index: -1;
-        pointer-events: none;
-        mix-blend-mode: screen;
-        animation: gridDrift 32s linear infinite;
       }
       @media (min-width: 700px) {
         .principles-grid {
@@ -996,44 +751,8 @@ Blame
       #t10 {
         min-height: 2.79vh;
         min-height: 2.79svh;
-        position: relative;
-        overflow: hidden;
-        background: radial-gradient(circle at top, rgba(255,106,0,.08), transparent 55%) var(--bg-light);
-        color: var(--text-dark);
-        --grid-hue: 18deg;
       }
-      #t10::before {
-        content: "";
-        position: absolute;
-        inset: -30%;
-        background-image:
-          linear-gradient(90deg, rgba(255,106,0,.08) 1px, transparent 1px),
-          linear-gradient(0deg, rgba(255,106,0,.08) 1px, transparent 1px);
-        background-size: 140px 140px;
-        opacity: .45;
-        transform: rotate(2.5deg);
-        animation: gridDrift 28s linear infinite;
-        pointer-events: none;
-      }
-      #t10::after {
-        content: "";
-        position: absolute;
-        inset: -20% -10% -26%;
-        background: radial-gradient(circle at 70% 30%, rgba(120,255,214,.18), transparent 70%),
-                    radial-gradient(circle at 20% 80%, rgba(74,144,226,.12), transparent 68%);
-        opacity: .8;
-        filter: blur(4px);
-        pointer-events: none;
-      }
-      #t10 .container {
-        position: relative;
-        gap: 8px;
-        backdrop-filter: saturate(140%) blur(6px);
-        background: rgba(255,255,255,.72);
-        border-radius: clamp(14px, 5vw, 24px);
-        box-shadow: 0 24px 60px rgba(0,0,0,.12);
-        padding: clamp(24px, 6vw, 40px);
-      }
+      #t10 .container { gap: 8px; }
       #t10 .legal { font-size: 10px; line-height: 1.45; color: #555; }
       #t10 .legal-gap { height: 8px; }
       #t10 .contact { display: grid; justify-items: center; gap: 8px; }
@@ -1138,28 +857,13 @@ Blame
       }
 
       .offer-items {
-        padding: 0 24px;
-        position: relative;
-        isolation: isolate;
-      }
-
-      .offer-items::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 24px;
-        width: 2px;
-        background: linear-gradient(180deg, rgba(255,106,0,.4) 0%, rgba(255,106,0,0) 80%);
-        opacity: .65;
-        filter: blur(.2px);
+        padding: 0 20px;
       }
 
       .offer-item {
-        position: relative;
         display: flex;
         align-items: center;
-        padding: 12px 0 12px 36px;
+        padding: 12px 0;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         color: #fff;
         font-size: 14px;
@@ -1345,8 +1049,7 @@ Blame
   <body>
     <main>
       <!-- TELA 1: Vídeo de vendas + logo no cabeçalho -->
-      <section id="t1" class="theme-dark reveal-on-scroll">
-        <div class="hero-aurora" aria-hidden="true"></div>
+      <section id="t1" class="theme-dark">
         <div class="hero-header">
           <img src="assets/logo02.png" alt="Synutra" class="logo" />
           <!-- App access dropdown (top-right) -->
@@ -1403,7 +1106,7 @@ Blame
       </section>
 
       <!-- TELA 2: Benefícios (clara) -->
-      <section id="t2" class="theme-light reveal-on-scroll">
+      <section id="t2" class="theme-light">
         <div class="container stack-lg center">
           <h2></h2>
           <h2 class="accent">Mais de 3.000 pessoas já conquistaram a transformação com nossa metodologia.</h2>
@@ -1437,7 +1140,7 @@ Blame
       </section>
 
       <!-- TELA 3: Foto de flexibilidade (escura) -->
-      <section id="t3" class="theme-dark reveal-on-scroll">
+      <section id="t3" class="theme-dark">
         <div class="container stack-md">
           <div class="stack-md">
             <span class="kicker">Mobilidade e Controle</span>
@@ -1454,7 +1157,7 @@ Blame
       </section>
 
       <!-- TELA 4: Princ�pios Cient�ficos (clara) -->
-      <section id="t4" class="theme-light reveal-on-scroll">
+      <section id="t4" class="theme-light">
         <div class="container">
           <div class="stack-lg center">
             <h2 class="accent">Princípios Científicos</h2>
@@ -1462,28 +1165,28 @@ Blame
             <p>No centro da Gymnamic está uma equipe de profissionais dedicados focados em lhe proporcionar a melhor experiência de treinamento.</p>
           </div>
           <div class="principles-grid">
-            <div class="card principle-card tilt-card" data-tilt-depth="8">
+            <div class="card principle-card">
               <img src="assets/treino01.jpg" alt="Profissionais apoiando orienta��es de treino" loading="lazy" />
               <div class="stack-sm">
                 <h3>Apoiado por profissionais</h3>
                 <p>Desenvolvido por especialistas licenciados pelo Conselho Regional de Educação Física, você pode confiar que cada orientação vem de um conhecimento profundo e cientificamente comprovado.</p>
               </div>
             </div>
-            <div class="card principle-card tilt-card" data-tilt-depth="8">
+            <div class="card principle-card">
               <img src="assets/treino02.png" alt="Treino com base em princ�pios cient�ficos" loading="lazy" />
               <div class="stack-sm">
                 <h3>Fundação científica</h3>
                 <p>Nossa metodologia não é guiada por modismos, mas por princípios científicos sólidos. A ciência constitui a base de cada treino personalizado que você recebe.</p>
               </div>
             </div>
-            <div class="card principle-card tilt-card" data-tilt-depth="8">
+            <div class="card principle-card">
               <img src="assets/treino03.png" alt="Praticante seguindo orienta��es com seguran�a" loading="lazy" />
               <div class="stack-sm">
                 <h3>A segurança é uma prioridade</h3>
                 <p>Exercite-se sabendo que cada programa é criado pensando na sua segurança, minimizando riscos e maximizando resultados.</p>
               </div>
             </div>
-            <div class="card principle-card tilt-card" data-tilt-depth="8">
+            <div class="card principle-card">
               <img src="assets/treino04.jpg" alt="Profissional incentivando aluno rumo aos objetivos" loading="lazy" />
               <div class="stack-sm">
                 <h3>Nossa missão é o seu sucesso</h3>
@@ -1494,17 +1197,17 @@ Blame
         </div>
       </section>
       <!-- TELA 5: Depoimentos (escura) -->
-      <section id="t5" class="theme-dark reveal-on-scroll">
+      <section id="t5" class="theme-dark">
         <div class="container stack-lg">
           <div class="stack-md center">
             <h2 class="accent">Depoimentos</h2>
             <p>Junte-se a milhares de usuários e alcance seus objetivos na academia!</p>
           </div>
           <div class="testimonial-videos">
-            <div class="testimonial-video tilt-card" data-tilt-depth="10">
+            <div class="testimonial-video">
               <iframe src="https://www.youtube.com/embed/UItWltVZZmE" title="Historia real  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
-            <div class="testimonial-video tilt-card" data-tilt-depth="10">
+            <div class="testimonial-video">
               <iframe src="https://www.youtube.com/embed/ml6cT4AZdqI" title="Depoimento de resultado conquistado" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <div class="testimonial-cta">
@@ -1515,7 +1218,7 @@ Blame
       </section>
 
       <!-- TELA 6: Imagem do celular ocupando toda a tela -->
-      <section id="t6" class="theme-light reveal-on-scroll">
+      <section id="t6" class="theme-light">
         <!-- Imagem do celular ocupando toda a tela -->
         <div class="phone-image-container">
           <img src="assets/celular-video-treino.jpg" alt="App Synutra em celular" class="phone-image" />
@@ -1540,14 +1243,14 @@ Blame
       </section>
 
       <!-- TELA 7: Produto + Oferta (escura) -->
-      <section id="t7" class="theme-dark reveal-on-scroll">
+      <section id="t7" class="theme-dark">
         <div class="container">
           <div class="stack-md center" style="margin-bottom: 12px;">
             <h3 style="font-size: clamp(24px, 4vw, 36px); font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.02em;">
               SYNUTRA - App de Treino e Nutrição
             </h3>
           </div>
-          <div class="offer-card tilt-card" data-tilt-depth="12">
+          <div class="offer-card">
             <!-- Banner MELHOR OFERTA -->
             <div class="offer-banner">
               <span>Oportunidade Única</span>
@@ -1635,7 +1338,7 @@ Blame
       </section>
 
       <!-- TELA 8: FAQ (clara) -->
-      <section id="t8" class="theme-light reveal-on-scroll">
+      <section id="t8" class="theme-light">
         <div class="container">
           <div class="stack-lg center">
             <h2 class="accent">FAQ — Dúvidas Frequentes</h2>
@@ -1674,7 +1377,7 @@ Blame
       </section>
 
       <!-- TELA 9: Chamada final (escura) -->
-      <section id="t9" class="theme-dark reveal-on-scroll">
+      <section id="t9" class="theme-dark">
         <div class="container center stack-lg">
           <h2 style="font-size:clamp(28px,5vw,44px); line-height:1.08; text-transform:uppercase;">
             AGORA É A SUA <br/>
@@ -1689,7 +1392,7 @@ Blame
       </section>
 
       <!-- TELA 10: Legal + Copyright (clara) -->
-      <section id="t10" class="theme-light reveal-on-scroll">
+      <section id="t10" class="theme-light">
         <div class="container stack-lg">
           <div class="legal">
             <p>O Synutra oferece planos e orientações personalizadas com base no seu questionário. Os resultados variam de pessoa para pessoa e não são garantidos. Para emagrecimento, definição e condicionamento, a constância, alimentação equilibrada e prática segura de exercícios são essenciais.</p>
@@ -1717,229 +1420,6 @@ Blame
         </div>
       </section>
     </main>
-    <script>
-      (function () {
-        const docEl = document.documentElement;
-        const revealEls = Array.from(document.querySelectorAll('.reveal-on-scroll'));
-        if (!revealEls.length) {
-          docEl.classList.add('js-enabled');
-          return;
-        }
-
-        const revealSections = Array.from(revealEls);
-        revealSections.forEach((section) => {
-          const potentialTargets = section.querySelectorAll('h1, h2, h3, h4, .accent, .offer-heading');
-          potentialTargets.forEach((node) => {
-            if (node.closest('.legal') || node.closest('summary') || node.hasAttribute('data-glow-ignore')) return;
-            node.setAttribute('data-glow', '');
-          });
-        });
-
-        const highlight = (sectionEl) => {
-          const glowTargets = sectionEl.querySelectorAll('[data-glow]');
-          glowTargets.forEach((node, idx) => {
-            if (node.classList.contains('glow-once')) return;
-            node.style.setProperty('--glow-delay', `${Math.min(idx * 0.08, 0.32)}s`);
-            requestAnimationFrame(() => node.classList.add('glow-once'));
-          });
-        };
-
-        const reveal = (el) => {
-          if (el.classList.contains('is-visible')) return;
-          el.classList.add('is-visible');
-          highlight(el);
-        };
-
-        const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-        let observer = null;
-
-        if (motionQuery.matches || !('IntersectionObserver' in window)) {
-          revealEls.forEach(reveal);
-          docEl.classList.add('js-enabled');
-          return;
-        }
-
-        observer = new IntersectionObserver((entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              reveal(entry.target);
-              obs.unobserve(entry.target);
-            }
-          });
-        }, {
-          threshold: 0.28,
-          rootMargin: '0px 0px -12% 0px'
-        });
-
-        revealEls.forEach((el, index) => {
-          el.style.setProperty('--reveal-delay', `${Math.min(index * 0.08, 0.32)}s`);
-          observer.observe(el);
-        });
-
-        const revealInitialInView = () => {
-          const viewportHeight = window.innerHeight || docEl.clientHeight;
-          revealEls.forEach((el) => {
-            if (el.classList.contains('is-visible')) return;
-            const rect = el.getBoundingClientRect();
-            if (rect.top < viewportHeight * 0.86 && rect.bottom > viewportHeight * 0.1) {
-              reveal(el);
-              observer?.unobserve(el);
-            }
-          });
-        };
-
-        revealInitialInView();
-        docEl.classList.add('js-enabled');
-      })();
-    </script>
-    <script>
-      (function () {
-        const heroSection = document.getElementById('t1');
-        const auroraLayer = heroSection?.querySelector('.hero-aurora');
-        const supportsFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-        const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
-
-        if (heroSection && auroraLayer) {
-          const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-          let pointerActive = false;
-          let pointerTimeout = null;
-
-          const setAurora = (x, y) => {
-            heroSection.style.setProperty('--aurora-x', `${clamp(x, 8, 92)}%`);
-            heroSection.style.setProperty('--aurora-y', `${clamp(y, 10, 92)}%`);
-          };
-
-          if (!coarsePointer) {
-            heroSection.addEventListener('pointermove', (event) => {
-              const rect = heroSection.getBoundingClientRect();
-              const relX = ((event.clientX - rect.left) / rect.width) * 100;
-              const relY = ((event.clientY - rect.top) / rect.height) * 100;
-              pointerActive = true;
-              clearTimeout(pointerTimeout);
-              setAurora(relX, relY);
-              pointerTimeout = setTimeout(() => {
-                pointerActive = false;
-              }, 1400);
-            });
-
-            heroSection.addEventListener('pointerleave', () => {
-              pointerActive = false;
-              setAurora(50, 46);
-            });
-          } else {
-            setAurora(52, 48);
-          }
-
-          const drift = (time) => {
-            if (!pointerActive) {
-              const t = time * 0.00035;
-              const x = 50 + Math.sin(t) * 12;
-              const y = 46 + Math.cos(t * 1.3) * 8;
-              setAurora(x, y);
-            }
-            requestAnimationFrame(drift);
-          };
-
-          requestAnimationFrame(drift);
-        }
-
-        const tiltCards = Array.from(document.querySelectorAll('.tilt-card'));
-        if (tiltCards.length) {
-          if (!supportsFinePointer) {
-            tiltCards.forEach((card) => card.classList.add('tilt-off'));
-          } else {
-            tiltCards.forEach((card) => {
-              const depth = parseFloat(card.dataset.tiltDepth || '12');
-              const influence = depth / 14;
-              let rafId = null;
-
-              const reset = () => {
-                card.style.setProperty('--tilt-rotate-x', '0deg');
-                card.style.setProperty('--tilt-rotate-y', '0deg');
-                card.style.setProperty('--tilt-elevate', '0');
-              };
-
-              card.addEventListener('pointerenter', () => {
-                card.classList.add('is-tilting');
-              });
-
-              card.addEventListener('pointermove', (event) => {
-                const rect = card.getBoundingClientRect();
-                const x = ((event.clientX - rect.left) / rect.width) - 0.5;
-                const y = ((event.clientY - rect.top) / rect.height) - 0.5;
-                if (rafId) cancelAnimationFrame(rafId);
-                rafId = requestAnimationFrame(() => {
-                  card.style.setProperty('--tilt-rotate-x', `${(-y * depth).toFixed(2)}deg`);
-                  card.style.setProperty('--tilt-rotate-y', `${(x * depth).toFixed(2)}deg`);
-                  const elevate = (1 + (Math.abs(x) + Math.abs(y)) * influence).toFixed(2);
-                  card.style.setProperty('--tilt-elevate', elevate);
-                });
-              });
-
-              const handleLeave = () => {
-                card.classList.remove('is-tilting');
-                reset();
-              };
-
-              card.addEventListener('pointerleave', handleLeave);
-              card.addEventListener('touchstart', reset, { passive: true });
-            });
-          }
-        }
-
-        const ctaButtons = Array.from(document.querySelectorAll('.cta'));
-        if (ctaButtons.length) {
-          const magnetStrength = supportsFinePointer ? 12 : 0;
-
-          const createRipple = (event, button) => {
-            const rect = button.getBoundingClientRect();
-            const ripple = document.createElement('span');
-            ripple.className = 'cta-ripple';
-            ripple.style.left = `${event.clientX - rect.left}px`;
-            ripple.style.top = `${event.clientY - rect.top}px`;
-            button.appendChild(ripple);
-            ripple.addEventListener('animationend', () => ripple.remove());
-          };
-
-          ctaButtons.forEach((button) => {
-            const resetDynamic = () => {
-              button.style.setProperty('--cta-tx-dynamic', '0px');
-              button.style.setProperty('--cta-ty-dynamic', '0px');
-            };
-
-            if (magnetStrength) {
-              let rafId = null;
-              button.addEventListener('pointermove', (event) => {
-                const rect = button.getBoundingClientRect();
-                const x = ((event.clientX - rect.left) / rect.width) - 0.5;
-                const y = ((event.clientY - rect.top) / rect.height) - 0.5;
-                if (rafId) cancelAnimationFrame(rafId);
-                rafId = requestAnimationFrame(() => {
-                  button.style.setProperty('--cta-tx-dynamic', `${(x * magnetStrength).toFixed(2)}px`);
-                  button.style.setProperty('--cta-ty-dynamic', `${(y * magnetStrength).toFixed(2)}px`);
-                });
-              });
-
-              button.addEventListener('pointerleave', resetDynamic);
-              button.addEventListener('pointerup', resetDynamic);
-              button.addEventListener('pointercancel', resetDynamic);
-            }
-
-            button.addEventListener('pointerdown', (event) => {
-              if (event.button === 2) return;
-              createRipple(event, button);
-            });
-
-            button.addEventListener('keyup', (event) => {
-              if (event.key === 'Enter' || event.key === ' ') {
-                const rect = button.getBoundingClientRect();
-                createRipple({ clientX: rect.left + rect.width / 2, clientY: rect.top + rect.height / 2 }, button);
-              }
-            });
-          });
-        }
-      })();
-    </script>
     <script>
       (function () {
         const docEl = document.documentElement;
