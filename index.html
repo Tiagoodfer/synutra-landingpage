@@ -2,7 +2,7 @@
 <html lang="pt-br">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, shrink-to-fit=no" />
     <title>Synutra — Landing Page</title>
     <link rel="icon" type="image/png" href="assets/emoji.png" />
     <meta name="description" content="Synutra — Transforme sua vida com treino e nutrição otimizados." />
@@ -30,6 +30,8 @@
         overflow-x: hidden;
         position: relative;
         overscroll-behavior: none;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: y mandatory;
       }
 
       * { box-sizing: border-box; }
@@ -56,6 +58,8 @@
         padding: 72px 20px 32px;
         position: relative;
         isolation: isolate; /* ensures background effects stay behind content */
+        scroll-snap-align: start;
+        scroll-snap-stop: normal;
       }
 
       #t1 {
@@ -386,9 +390,14 @@
         box-shadow: 0 10px 25px rgba(255,106,0,.35);
         transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
         will-change: transform;
+        min-height: 48px;
+        min-width: 48px;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
       }
       .cta:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(255,106,0,.4); filter: saturate(1.1); }
       .cta:active { transform: translateY(0); }
+      .cta:focus-visible { outline: 3px solid rgba(255,106,0,.6); outline-offset: 2px; }
 
       /* Carousel na tela 2 */
       #t2 .container {
@@ -464,6 +473,10 @@
         color: #fff;
         cursor: pointer;
         transition: background .2s ease, transform .2s ease;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        min-height: 48px;
+        min-width: 48px;
       }
       #t2 .carousel-control:hover { background: rgba(0,0,0,.8); transform: translateY(-50%) scale(1.05); }
       #t2 .carousel-control:active { transform: translateY(-50%) scale(.97); }
@@ -723,6 +736,19 @@
       #t3 { padding-top: 48px; padding-bottom: 24px; }
       #t3 .container { gap: 18px; }
       #t3 .stack-md { gap: 10px; }
+      
+      /* Otimizações de performance para mobile */
+      .touch-device * {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+      }
+      
+      .touch-device .cta,
+      .touch-device button,
+      .touch-device [role="button"] {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
 
       /* Ajuste de altura da tela 2 */
       #t2 {
@@ -1005,11 +1031,39 @@
         section {
           min-height: calc(var(--vh) - env(safe-area-inset-top) - env(safe-area-inset-bottom));
           padding: 60px 16px 20px;
+          scroll-snap-align: start;
         }
         
         /* Previne scroll horizontal */
         * {
           max-width: 100%;
+        }
+        
+        /* Melhora performance de scroll */
+        .theme-dark::before,
+        .theme-dark::after {
+          will-change: auto;
+        }
+        
+        /* Otimiza animações para mobile */
+        .ticker-track {
+          animation-duration: 12s;
+        }
+        
+        /* Melhora área de toque para botões */
+        .cta {
+          padding: 18px 32px;
+          font-size: 16px;
+        }
+        
+        /* Otimiza carrossel para touch */
+        #t2 .carousel {
+          touch-action: pan-x;
+        }
+        
+        #t2 .carousel-control {
+          width: 48px;
+          height: 48px;
         }
       }
 
@@ -1425,28 +1479,40 @@
         const docEl = document.documentElement;
         let baseVH = window.innerHeight;
         let lastOrientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+        let ticking = false;
 
         const applyVH = (value) => {
           docEl.style.setProperty('--vh', `${value}px`);
         };
 
         const updateVH = () => {
-          const currentOrientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
-          const currentHeight = window.innerHeight;
+          if (!ticking) {
+            requestAnimationFrame(() => {
+              const currentOrientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+              const currentHeight = window.innerHeight;
 
-          if (currentOrientation !== lastOrientation) {
-            lastOrientation = currentOrientation;
-            baseVH = currentHeight;
-          } else {
-            baseVH = Math.min(baseVH, currentHeight);
+              if (currentOrientation !== lastOrientation) {
+                lastOrientation = currentOrientation;
+                baseVH = currentHeight;
+              } else {
+                baseVH = Math.min(baseVH, currentHeight);
+              }
+
+              applyVH(baseVH);
+              ticking = false;
+            });
+            ticking = true;
           }
-
-          applyVH(baseVH);
         };
 
         applyVH(baseVH);
-        window.addEventListener('resize', updateVH);
-        window.visualViewport?.addEventListener('resize', updateVH);
+        window.addEventListener('resize', updateVH, { passive: true });
+        window.visualViewport?.addEventListener('resize', updateVH, { passive: true });
+        
+        // Melhora performance no mobile
+        if ('ontouchstart' in window) {
+          document.body.classList.add('touch-device');
+        }
       })();
     </script>
     <script>
@@ -1461,8 +1527,10 @@
 
         let currentIndex = 0;
         let autoTimer = null;
+        let isTouching = false;
         const AUTO_INTERVAL = 5000;
         const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const isMobile = 'ontouchstart' in window;
 
         const applyActiveSlide = (index) => {
           slides.forEach((slide, idx) => {
@@ -1487,20 +1555,53 @@
         };
 
         const startAuto = () => {
-          if (motionQuery.matches || slides.length < 2) return;
+          if (motionQuery.matches || slides.length < 2 || isTouching) return;
           clearAuto();
           autoTimer = setInterval(() => showRelative(1), AUTO_INTERVAL);
         };
 
-        prevButton?.addEventListener('click', () => {
-          showRelative(-1);
+        // Event listeners otimizados para mobile
+        const handleButtonClick = (offset) => {
+          showRelative(offset);
           startAuto();
-        });
+        };
 
-        nextButton?.addEventListener('click', () => {
-          showRelative(1);
-          startAuto();
-        });
+        prevButton?.addEventListener('click', () => handleButtonClick(-1), { passive: true });
+        nextButton?.addEventListener('click', () => handleButtonClick(1), { passive: true });
+
+        // Touch events para mobile
+        if (isMobile) {
+          let startX = 0;
+          let startY = 0;
+
+          carousel.addEventListener('touchstart', (e) => {
+            isTouching = true;
+            clearAuto();
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+          }, { passive: true });
+
+          carousel.addEventListener('touchend', (e) => {
+            if (!isTouching) return;
+            
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            const diffX = startX - endX;
+            const diffY = startY - endY;
+
+            // Só responde a swipe horizontal significativo
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+              if (diffX > 0) {
+                showRelative(1); // Swipe left = next
+              } else {
+                showRelative(-1); // Swipe right = prev
+              }
+            }
+
+            isTouching = false;
+            setTimeout(() => startAuto(), 1000);
+          }, { passive: true });
+        }
 
         carousel.addEventListener('pointerenter', clearAuto);
         carousel.addEventListener('pointerleave', startAuto);
@@ -1528,14 +1629,81 @@
     <script>
       (function () {
         let scrollTimeout;
+        let isScrolling = false;
+        
         const onScroll = () => {
-          document.documentElement.classList.add('is-scrolling');
+          if (!isScrolling) {
+            document.documentElement.classList.add('is-scrolling');
+            isScrolling = true;
+          }
+          
           clearTimeout(scrollTimeout);
           scrollTimeout = setTimeout(() => {
             document.documentElement.classList.remove('is-scrolling');
-          }, 180);
+            isScrolling = false;
+          }, 150);
         };
+        
+        // Otimiza scroll para mobile
         window.addEventListener('scroll', onScroll, { passive: true });
+        
+        // Melhora performance de scroll no mobile
+        if ('ontouchstart' in window) {
+          // Previne scroll bounce no iOS
+          document.body.style.overscroll-behavior = 'none';
+          
+          // Adiciona suporte a gestos de swipe para navegação
+          let startY = 0;
+          let startX = 0;
+          
+          document.addEventListener('touchstart', (e) => {
+            startY = e.touches[0].clientY;
+            startX = e.touches[0].clientX;
+          }, { passive: true });
+          
+          document.addEventListener('touchend', (e) => {
+            const endY = e.changedTouches[0].clientY;
+            const endX = e.changedTouches[0].clientX;
+            const diffY = startY - endY;
+            const diffX = startX - endX;
+            
+            // Swipe vertical para navegação entre seções
+            if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 100) {
+              const sections = document.querySelectorAll('section');
+              const currentSection = getCurrentSection();
+              
+              if (diffY > 0 && currentSection < sections.length - 1) {
+                // Swipe up = próxima seção
+                sections[currentSection + 1].scrollIntoView({ 
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              } else if (diffY < 0 && currentSection > 0) {
+                // Swipe down = seção anterior
+                sections[currentSection - 1].scrollIntoView({ 
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }
+            }
+          }, { passive: true });
+        }
+        
+        function getCurrentSection() {
+          const sections = document.querySelectorAll('section');
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          
+          for (let i = 0; i < sections.length; i++) {
+            const section = sections[i];
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            
+            if (scrollTop >= sectionTop - 100 && scrollTop < sectionTop + sectionHeight - 100) {
+              return i;
+            }
+          }
+          return 0;
+        }
       })();
     </script>
   </body>
