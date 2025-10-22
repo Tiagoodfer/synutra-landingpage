@@ -1,3 +1,26 @@
+Skip to content
+Navigation Menu
+Tiagoodfer
+synutra-landingpage
+
+Type / to search
+Code
+Issues
+Pull requests
+Actions
+Projects
+Security
+Insights
+Settings
+synutra-landingpage
+/index.html
+Go to file
+t
+ 
+
+Code
+
+Blame
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -56,25 +79,6 @@
         padding: 72px 20px 32px;
         position: relative;
         isolation: isolate; /* ensures background effects stay behind content */
-      }
-
-      .reveal-on-scroll {
-        --reveal-delay: 0s;
-        opacity: 0;
-        transform: translateY(48px);
-        transition: opacity .6s ease, transform .6s ease;
-        transition-delay: var(--reveal-delay, 0s);
-        will-change: opacity, transform;
-      }
-
-      .reveal-on-scroll.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      html:not(.js-enabled) .reveal-on-scroll {
-        opacity: 1;
-        transform: none;
       }
 
       #t1 {
@@ -1068,7 +1072,7 @@
   <body>
     <main>
       <!-- TELA 1: Vídeo de vendas + logo no cabeçalho -->
-      <section id="t1" class="theme-dark reveal-on-scroll">
+      <section id="t1" class="theme-dark">
         <div class="hero-header">
           <img src="assets/logo02.png" alt="Synutra" class="logo" />
           <!-- App access dropdown (top-right) -->
@@ -1125,7 +1129,7 @@
       </section>
 
       <!-- TELA 2: Benefícios (clara) -->
-      <section id="t2" class="theme-light reveal-on-scroll">
+      <section id="t2" class="theme-light">
         <div class="container stack-lg center">
           <h2></h2>
           <h2 class="accent">Mais de 3.000 pessoas já conquistaram a transformação com nossa metodologia.</h2>
@@ -1159,7 +1163,7 @@
       </section>
 
       <!-- TELA 3: Foto de flexibilidade (escura) -->
-      <section id="t3" class="theme-dark reveal-on-scroll">
+      <section id="t3" class="theme-dark">
         <div class="container stack-md">
           <div class="stack-md">
             <span class="kicker">Mobilidade e Controle</span>
@@ -1176,7 +1180,7 @@
       </section>
 
       <!-- TELA 4: Princ�pios Cient�ficos (clara) -->
-      <section id="t4" class="theme-light reveal-on-scroll">
+      <section id="t4" class="theme-light">
         <div class="container">
           <div class="stack-lg center">
             <h2 class="accent">Princípios Científicos</h2>
@@ -1216,7 +1220,7 @@
         </div>
       </section>
       <!-- TELA 5: Depoimentos (escura) -->
-      <section id="t5" class="theme-dark reveal-on-scroll">
+      <section id="t5" class="theme-dark">
         <div class="container stack-lg">
           <div class="stack-md center">
             <h2 class="accent">Depoimentos</h2>
@@ -1237,7 +1241,7 @@
       </section>
 
       <!-- TELA 6: Imagem do celular ocupando toda a tela -->
-      <section id="t6" class="theme-light reveal-on-scroll">
+      <section id="t6" class="theme-light">
         <!-- Imagem do celular ocupando toda a tela -->
         <div class="phone-image-container">
           <img src="assets/celular-video-treino.jpg" alt="App Synutra em celular" class="phone-image" />
@@ -1262,7 +1266,7 @@
       </section>
 
       <!-- TELA 7: Produto + Oferta (escura) -->
-      <section id="t7" class="theme-dark reveal-on-scroll">
+      <section id="t7" class="theme-dark">
         <div class="container">
           <div class="stack-md center" style="margin-bottom: 12px;">
             <h3 style="font-size: clamp(24px, 4vw, 36px); font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.02em;">
@@ -1357,7 +1361,7 @@
       </section>
 
       <!-- TELA 8: FAQ (clara) -->
-      <section id="t8" class="theme-light reveal-on-scroll">
+      <section id="t8" class="theme-light">
         <div class="container">
           <div class="stack-lg center">
             <h2 class="accent">FAQ — Dúvidas Frequentes</h2>
@@ -1396,7 +1400,7 @@
       </section>
 
       <!-- TELA 9: Chamada final (escura) -->
-      <section id="t9" class="theme-dark reveal-on-scroll">
+      <section id="t9" class="theme-dark">
         <div class="container center stack-lg">
           <h2 style="font-size:clamp(28px,5vw,44px); line-height:1.08; text-transform:uppercase;">
             AGORA É A SUA <br/>
@@ -1411,7 +1415,7 @@
       </section>
 
       <!-- TELA 10: Legal + Copyright (clara) -->
-      <section id="t10" class="theme-light reveal-on-scroll">
+      <section id="t10" class="theme-light">
         <div class="container stack-lg">
           <div class="legal">
             <p>O Synutra oferece planos e orientações personalizadas com base no seu questionário. Os resultados variam de pessoa para pessoa e não são garantidos. Para emagrecimento, definição e condicionamento, a constância, alimentação equilibrada e prática segura de exercícios são essenciais.</p>
@@ -1439,64 +1443,6 @@
         </div>
       </section>
     </main>
-    <script>
-      (function () {
-        const docEl = document.documentElement;
-        const revealEls = Array.from(document.querySelectorAll('.reveal-on-scroll'));
-        if (!revealEls.length) {
-          docEl.classList.add('js-enabled');
-          return;
-        }
-
-        const reveal = (el) => {
-          el.classList.add('is-visible');
-        };
-
-        const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-        if (motionQuery.matches) {
-          revealEls.forEach(reveal);
-          docEl.classList.add('js-enabled');
-          return;
-        }
-
-        if (!('IntersectionObserver' in window)) {
-          revealEls.forEach(reveal);
-          docEl.classList.add('js-enabled');
-          return;
-        }
-
-        const observer = new IntersectionObserver((entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              reveal(entry.target);
-              obs.unobserve(entry.target);
-            }
-          });
-        }, {
-          threshold: 0.2,
-          rootMargin: '0px 0px -10% 0px'
-        });
-
-        revealEls.forEach((el, index) => {
-          el.style.setProperty('--reveal-delay', `${Math.min(index * 0.08, 0.32)}s`);
-          observer.observe(el);
-        });
-
-        const revealInitialInView = () => {
-          const viewportHeight = window.innerHeight || docEl.clientHeight;
-          revealEls.forEach((el) => {
-            const rect = el.getBoundingClientRect();
-            if (rect.top < viewportHeight * 0.9 && rect.bottom > viewportHeight * 0.1) {
-              reveal(el);
-              observer.unobserve(el);
-            }
-          });
-        };
-
-        revealInitialInView();
-        docEl.classList.add('js-enabled');
-      })();
-    </script>
     <script>
       (function () {
         const docEl = document.documentElement;
@@ -1617,5 +1563,3 @@
     </script>
   </body>
 </html>
-
-
