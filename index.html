@@ -217,6 +217,70 @@
       h1 { font-size: clamp(28px, 5vw, 48px); line-height: 1.1; }
       h2 { font-size: clamp(24px, 3.6vw, 36px); line-height: 1.15; }
       h3 { font-size: clamp(18px, 2.2vw, 24px); font-weight: 600; }
+
+      .hero-title {
+        display: grid;
+        gap: 6px;
+      }
+
+      .hero-line {
+        display: block;
+      }
+
+      .hero-line.highlight {
+        color: var(--brand);
+      }
+
+      .hero-line.subtitle {
+        font-weight: 500;
+      }
+
+      .typewriter {
+        position: relative;
+        display: inline-block;
+        white-space: pre-wrap;
+      }
+
+      .typewriter::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -2px;
+        width: 2px;
+        background: var(--brand);
+        opacity: 0;
+        transform: translateX(0);
+      }
+
+      .typewriter.is-typing::after {
+        opacity: 1;
+        animation: caret-blink .85s steps(2, end) infinite;
+      }
+
+      @keyframes caret-blink {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 1; }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        isolation: isolate;
+      }
+
+      .hero-content::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -42px;
+        transform: translateX(-50%);
+        width: clamp(240px, 60vw, 520px);
+        height: clamp(120px, 32vw, 220px);
+        background: radial-gradient(ellipse at center, rgba(255,106,0,0.32) 0%, rgba(255,106,0,0.18) 42%, transparent 72%);
+        opacity: .8;
+        pointer-events: none;
+      }
       p  { margin: 0; font-size: clamp(15px, 1.6vw, 18px); color: color-mix(in oklab, currentColor, #888 25%); }
 
       /* Video card */
@@ -429,7 +493,7 @@
       .theme-dark h1, .theme-dark h2, .theme-dark h3 { color: #fff; }
 
       /* Utility for uppercase emphasis */
-      .kicker { font-size: 14px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--brand); }
+      .kicker { font-size: 14px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #22c55e; }
 
       /* App access menu (top-right) */
       .app-menu {
@@ -624,11 +688,16 @@
           </details>
         </div>
         <div class="container video-card">
-          <div class="stack-md">
+          <div class="stack-md hero-content">
             <span class="kicker">Transforme seu CORPO e SAÚDE</span>
-            <h1>Emagrecer, Ganhar massa muscular e melhorar sua saúde com o App Synutra</h1>
-            <p>Um app que pensa por você:  entende seu objetivo, monta seu treino e sua alimentação, 
-              sugere receitas que você realmente gosta e ainda entrega videos-aulas para treinar em casa.</p>
+            <h1 class="hero-title">
+              <span class="hero-line highlight">Emagrecer?</span>
+              <span class="hero-line highlight">Ganhar massa muscular?</span>
+              <span class="hero-line subtitle">O app que transforma objetivo em resultado</span>
+            </h1>
+            
+            <p class="typewriter" data-type-text="Synutra entende seu corpo e rotina, monta treino e alimentação personalizados, sugere receitas que você vai querer repetir e entrega videoaulas para treinar do zero ao avançado.">Synutra entende seu corpo e rotina, monta treino e alimentação personalizados, sugere receitas que você vai querer repetir e entrega videoaulas para treinar do zero ao avançado.</p>
+            
           </div>
 
           <!-- Substitua o src abaixo pelo seu arquivo de vídeo em assets (ex.: assets/vsl.mp4) -->
@@ -657,7 +726,7 @@
       <section id="t2" class="theme-light">
         <div class="container stack-lg center">
           <h2></h2>
-          <h2 class="accent">Mais de 3.000 pessoas já conquistaram a transformação com nossa metodologia.</h2>
+          <h2 class="accent"></h2>Mais de 3.000 pessoas já conquistaram a transformação com nossa metodologia.</h2>
           <div class="carousel" data-carousel>
             <button class="carousel-control" type="button" aria-label="Mostrar imagem anterior" data-carousel-prev>
               <span aria-hidden="true">‹</span>
@@ -972,6 +1041,38 @@
         </div>
       </section>
     </main>
+    <script>
+      (function () {
+        const element = document.querySelector('.typewriter');
+        if (!element) return;
+
+        const fullText = element.dataset.typeText || element.textContent;
+        if (!fullText) return;
+
+        const characters = Array.from(fullText);
+        const baseDelay = 42;
+        const variance = 55;
+
+        element.textContent = "";
+        element.classList.add('is-typing');
+
+        let index = 0;
+
+        const typeNext = () => {
+          element.textContent += characters[index];
+          index += 1;
+
+          if (index < characters.length) {
+            const delay = baseDelay + Math.random() * variance;
+            setTimeout(typeNext, delay);
+          } else {
+            element.classList.remove('is-typing');
+          }
+        };
+
+        setTimeout(typeNext, 400);
+      })();
+    </script>
     <script>
       (function () {
         const docEl = document.documentElement;
