@@ -189,6 +189,12 @@
         opacity: .35;
         animation: stripes-slide-2 28s linear infinite;
       }
+      #t7::before,
+      #t7::after,
+      #t9::before,
+      #t9::after {
+        inset: 0; /* impede que as listras avancem sobre a tela 8 */
+      }
 
       @keyframes stripes-slide { to { background-position: 0 0, 0 0, 800px 0; } }
       @keyframes stripes-slide-2 { to { background-position: -900px 0; } }
